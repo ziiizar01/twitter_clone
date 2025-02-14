@@ -14,9 +14,46 @@ const Home = () => {
     // Implement search functionality here
   };
 
+  const [tweets, setTweets] = useState([
+    {
+      id: "1",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
+      username: "Alice Johnson",
+      handle: "@alice_j",
+      timestamp: "2h",
+      content:
+        "Just launched my new project! Super excited to share it with everyone. #coding #webdev",
+      likes: 124,
+      retweets: 32,
+      replies: 15,
+    },
+    {
+      id: "2",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
+      username: "Bob Smith",
+      handle: "@bobsmith",
+      timestamp: "4h",
+      content: "Beautiful day for a coffee and some coding ☕️ #developerlife",
+      likes: 89,
+      retweets: 12,
+      replies: 8,
+    },
+  ]);
+
   const handleTweet = (content: string) => {
-    // Implement tweet posting functionality here
-    console.log("New tweet:", content);
+    const newTweet = {
+      id: Date.now().toString(),
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current",
+      username: "Current User",
+      handle: "@currentuser",
+      timestamp: "now",
+      content,
+      likes: 0,
+      retweets: 0,
+      replies: 0,
+    };
+    setTweets([newTweet, ...tweets]);
+    setIsComposeOpen(false);
   };
 
   return (
@@ -30,6 +67,7 @@ const Home = () => {
 
         <div className="flex-1 min-h-[calc(100vh-4rem)] border-x border-gray-200">
           <TweetFeed
+            tweets={tweets}
             onLoadMore={() => {
               // Implement load more functionality here
               console.log("Loading more tweets...");
