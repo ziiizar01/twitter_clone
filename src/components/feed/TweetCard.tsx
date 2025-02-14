@@ -35,37 +35,41 @@ const TweetCard = ({
 }: TweetCardProps) => {
   return (
     <Card className="p-4 hover:bg-gray-50 transition-colors cursor-pointer border-b bg-white">
-      <div className="flex space-x-4">
-        <Avatar className="w-12 h-12">
-          <AvatarImage src={avatar} alt={username} />
-          <AvatarFallback>{username[0]}</AvatarFallback>
-        </Avatar>
+      <div className="flex flex-col">
+        <div className="flex items-start space-x-4 mb-3">
+          <Avatar className="w-12 h-12 flex-shrink-0">
+            <AvatarImage src={avatar} alt={username} />
+            <AvatarFallback>{username[0]}</AvatarFallback>
+          </Avatar>
 
-        <div className="flex-1">
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-0">
             <div className="flex items-center space-x-2">
-              <span className="font-bold">{username}</span>
+              <span className="font-bold truncate">{username}</span>
               {verified && (
                 <svg
-                  className="w-4 h-4 text-blue-500"
+                  className="w-4 h-4 text-blue-500 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
                   <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L9 10.586l3.293-3.293a1 1 0 011.414 1.414z" />
                 </svg>
               )}
-              <span className="text-gray-500">{handle}</span>
-              <span className="text-gray-500">·</span>
-              <span className="text-gray-500">{timestamp}</span>
+              <span className="text-gray-500 truncate">{handle}</span>
+              <span className="text-gray-500 flex-shrink-0">·</span>
+              <span className="text-gray-500 flex-shrink-0">{timestamp}</span>
             </div>
-            <div className="flex items-center text-sm text-gray-500 mt-1">
-              <span className="font-medium text-blue-600">{specialty}</span>
-              <span className="mx-2">·</span>
-              <span>{hospital}</span>
+            <div className="flex items-center text-sm text-gray-500">
+              <span className="font-medium text-blue-600 truncate">
+                {specialty}
+              </span>
+              <span className="mx-2 flex-shrink-0">·</span>
+              <span className="truncate">{hospital}</span>
             </div>
           </div>
+        </div>
 
-          <p className="mt-2 text-gray-900">{content}</p>
+        <div className="p-4">
+          <p className="text-gray-900">{content}</p>
 
           {images && images.length > 0 && (
             <div
