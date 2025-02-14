@@ -20,7 +20,7 @@ const Header = ({ onSearch = () => {} }: HeaderProps) => {
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
             <Input
               className="w-full bg-gray-100 pl-10 focus-visible:ring-[#1DA1F2]"
-              placeholder="Search Twitter"
+              placeholder="Search doctors, hospitals, or medical topics"
               type="search"
               onChange={(e) => onSearch(e.target.value)}
             />

@@ -20,9 +20,10 @@ const NavItem = ({ icon, label, active = false }: NavItemProps) => (
 
 interface SidebarProps {
   activeItem?: string;
+  onTweetClick?: () => void;
 }
 
-const Sidebar = ({ activeItem = "Home" }: SidebarProps) => {
+const Sidebar = ({ activeItem = "Home", onTweetClick }: SidebarProps) => {
   const navItems = [
     { icon: <Home className="w-6 h-6" />, label: "Home" },
     { icon: <MessageCircle className="w-6 h-6" />, label: "Messages" },
@@ -44,7 +45,10 @@ const Sidebar = ({ activeItem = "Home" }: SidebarProps) => {
         ))}
 
         {/* Tweet Button */}
-        <Button className="mt-4 bg-[#1DA1F2] text-white hover:bg-[#1a8cd8] rounded-full">
+        <Button
+          className="mt-4 bg-[#1DA1F2] text-white hover:bg-[#1a8cd8] rounded-full"
+          onClick={onTweetClick}
+        >
           Tweet
         </Button>
       </div>

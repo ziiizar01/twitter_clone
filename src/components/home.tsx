@@ -17,30 +17,62 @@ const Home = () => {
   const [tweets, setTweets] = useState([
     {
       id: "1",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alice",
-      username: "Alice Johnson",
-      handle: "@alice_j",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=DrSarah",
+      username: "Dr. Sarah Chen",
+      handle: "@dr_chen",
       timestamp: "2h",
       content:
-        "Just launched my new project! Super excited to share it with everyone. #coding #webdev",
-      likes: 124,
-      retweets: 32,
-      replies: 15,
+        "Just completed a successful minimally invasive cardiac procedure! Amazing to see how new technologies are improving patient outcomes. #Cardiology #MedicalInnovation",
+      images: [
+        "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&auto=format&fit=crop&q=60",
+      ],
+      likes: 324,
+      shares: 82,
+      comments: 45,
+      specialty: "Cardiology",
+      hospital: "Metropolitan Heart Center",
+      verified: true,
     },
     {
       id: "2",
-      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Bob",
-      username: "Bob Smith",
-      handle: "@bobsmith",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=DrJames",
+      username: "Dr. James Wilson",
+      handle: "@drwilson_neuro",
       timestamp: "4h",
-      content: "Beautiful day for a coffee and some coding ☕️ #developerlife",
-      likes: 89,
-      retweets: 12,
-      replies: 8,
+      content:
+        "Fascinating case study: Successfully treated a rare neurological condition using a combination of traditional and cutting-edge therapies. Always learning! #Neurology #MedicalResearch",
+      images: [
+        "https://images.unsplash.com/photo-1559757175-7b21e7afdd2b?w=800&auto=format&fit=crop&q=60",
+        "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&auto=format&fit=crop&q=60",
+      ],
+      likes: 289,
+      shares: 112,
+      comments: 78,
+      specialty: "Neurology",
+      hospital: "Central Neuroscience Institute",
+      verified: true,
+    },
+    {
+      id: "3",
+      avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=DrEmily",
+      username: "Dr. Emily Rodriguez",
+      handle: "@dr_rodriguez",
+      timestamp: "6h",
+      content:
+        "Important reminder: Flu season is approaching! Schedule your vaccination appointment. Prevention is always better than cure. 💉 #PublicHealth #FluPrevention",
+      images: [
+        "https://images.unsplash.com/photo-1576765974026-d0aa7fe5b62f?w=800&auto=format&fit=crop&q=60",
+      ],
+      likes: 445,
+      shares: 256,
+      comments: 93,
+      specialty: "Family Medicine",
+      hospital: "Community Health Center",
+      verified: true,
     },
   ]);
 
-  const handleTweet = (content: string) => {
+  const handleTweet = (content: string, images: string[]) => {
     const newTweet = {
       id: Date.now().toString(),
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=current",
@@ -51,6 +83,7 @@ const Home = () => {
       likes: 0,
       retweets: 0,
       replies: 0,
+      images,
     };
     setTweets([newTweet, ...tweets]);
     setIsComposeOpen(false);
@@ -62,7 +95,10 @@ const Home = () => {
 
       <main className="flex w-full max-w-7xl mx-auto">
         <aside className="hidden md:block sticky top-16 h-[calc(100vh-4rem)]">
-          <Sidebar activeItem="Home" />
+          <Sidebar
+            activeItem="Home"
+            onTweetClick={() => setIsComposeOpen(true)}
+          />
         </aside>
 
         <div className="flex-1 min-h-[calc(100vh-4rem)] border-x border-gray-200">
@@ -82,7 +118,13 @@ const Home = () => {
               <h2 className="font-bold text-xl mb-4">What's happening</h2>
               <div className="space-y-4">
                 {/* Placeholder trending topics */}
-                {["#Trending1", "#Trending2", "#Trending3"].map((topic) => (
+                {[
+                  "#COVID19Updates",
+                  "#MedicalResearch",
+                  "#PublicHealth",
+                  "#HealthcareTech",
+                  "#PatientCare",
+                ].map((topic) => (
                   <div
                     key={topic}
                     className="cursor-pointer hover:bg-gray-100 p-2 rounded"

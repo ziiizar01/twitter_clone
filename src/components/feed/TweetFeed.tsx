@@ -84,6 +84,7 @@ const TweetFeed = ({
               handle={tweet.handle}
               timestamp={tweet.timestamp}
               content={tweet.content}
+              images={tweet.images}
               likes={tweet.likes}
               retweets={tweet.retweets}
               replies={tweet.replies}
